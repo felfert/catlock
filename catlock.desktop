@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Catlock
+Comment=Lock your cat out
+Exec=catlock
+Icon=catlock
+Categories=Application;Game;
+Terminal=false
+Type=Application
+Encoding=UTF-8
+StartupNotify=false
+X-Desktop-File-Install-Version=0.23

@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE refentry PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN' 'http://www.docbook.org/xml/4.5/docbookx.dtd'
+[
+<!ENTITY version '@PROJECT_VERSION@'>
+]>
+
+<refentry>
+
+    <refentryinfo>
+        <title>catlock manual</title>
+        <productname>catlock</productname>
+        <date>2019-07-07</date>
+        <author>
+            <firstname>Fritz</firstname> <surname>Elfert</surname>
+            <email>catlock@fritz-elfert.de</email>
+        </author>
+    </refentryinfo>
+
+    <refmeta>
+        <refentrytitle>catlock</refentrytitle>
+        <manvolnum>1</manvolnum>
+        <refmiscinfo class='version'>&version;</refmiscinfo>
+    </refmeta>
+
+    <refnamediv>
+        <refname>catlock</refname>
+        <refpurpose>Lock keyboard and point against cat access</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+        <cmdsynopsis>
+            <command>catlock</command>
+            <arg choice='opt'>
+                <arg choice='plain'><option>--display</option></arg>
+                <arg choice='plain'><replaceable>display-name</replaceable></arg>
+            </arg>
+            <arg choice='opt'>
+                <group choice='req'>
+                    <arg choice='plain'><option>-s</option></arg>
+                    <arg choice='plain'><option>--shortcut</option></arg>
+                </group>
+                <arg choice='plain'><replaceable>keysym-string</replaceable></arg>
+            </arg>
+            <arg choice='opt'>
+                <group choice='req'>
+                    <arg choice='plain'><option>-o</option></arg>
+                    <arg choice='plain'><option>--oshortcut</option></arg>
+                </group>
+                <arg choice='plain'><replaceable>keysym-string</replaceable></arg>
+            </arg>
+            <arg choice='opt'>
+                <group choice='req'>
+                    <arg choice='plain'><option>-p</option></arg>
+                    <arg choice='plain'><option>--print</option></arg>
+                </group>
+            </arg>
+            <arg choice='opt'>
+                <group choice='req'>
+                    <arg choice='plain'><option>-d</option></arg>
+                    <arg choice='plain'><option>--debug</option></arg>
+                </group>
+            </arg>
+        </cmdsynopsis>
+        <cmdsynopsis>
+            <command>catlock</command>
+            <group choice='req'>
+                <arg choice='plain'><option>--version</option></arg>
+                <arg choice='plain'><option>--help</option></arg>
+                <arg choice='plain'><option>-?</option></arg>
+            </group>
+        </cmdsynopsis>
+    </refsynopsisdiv>
+
+    <refsection>
+        <title>Description</title>
+        <para>
+            <command>catlock</command> was inspired by
+            <ulink url='https://manpages.debian.org/stretch/xtrlock/xtrlock.1x.en.html'>xtrlock</ulink>,
+                but instead of requiring a password to unlock, a simple three-key combination
+            <option>Ctrl+Alt+KP_Enter</option> is sufficient to terminate. Furthermore, pressing
+            <option>Meta+L</option> switches off the screen backlight (like xset dpms force off does).
+                Both shortcuts are configurable.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Options</title>
+        <para>
+            <command>catlock</command> accepts the following options:
+        </para>
+        <refsection>
+            <title>Shortcut specification</title>
+            <variablelist>
+                <varlistentry>
+                    <term><option>-s</option></term>
+                    <term><option>--shortcut=<replaceable>keysym-string</replaceable></option></term>
+                    <listitem>
+                        <para>Specifies the shortcut for unlocking.</para>
+                        <para>The <replaceable>keysym-string</replaceable> is a concatenation of modifiers and
+                            the actual key name separated by <option>+</option>. Valid modifiers are
+                            <option>Shift</option>, <option>Ctrl</option>, <option>Alt</option> and <option>Meta</option>.
+                            The <option>--print</option> can be used to show possible keysym-strings.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term><option>-o</option></term>
+                    <term><option>--oshortcut=<replaceable>keysym-string</replaceable></option></term>
+                    <listitem>
+                        <para>Specifies the shortcut for switching off the screen.</para>
+                        <para>In addition to specifying a valid <replaceable>keysym-string</replaceable>,
+                        the literal string <option>none</option> can be specified to disable this feature.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+
+        <refsection>
+            <title>Verbosity, help</title>
+            <variablelist>
+                <varlistentry>
+                    <term><option>-p</option></term>
+                    <term><option>--print</option></term>
+                    <listitem>
+                        <para>Enables output of keysym-strings</para>
+                        <para>keysym strings are printed in the format, accepted by the shortcut options.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term><option>-?</option></term>
+                    <term><option>--help</option></term>
+                    <listitem>
+                        <para>Output a short help text and exit.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term><option>--version</option></term>
+                    <listitem>
+                        <para>Output version information and exit.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+
+        <refsection>
+            <title>Miscellaneous</title>
+            <variablelist>
+                <varlistentry>
+                    <term><option>--display=<replaceable>display-name</replaceable></option></term>
+                    <listitem>
+                        <para>Overrides the <varname>DISPLAY</varname> environment variable.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+    </refsection>
+
+    <refsection>
+        <title>Environment</title>
+        <para>
+            The following environment variables affect <command>catlock</command>:
+            <variablelist>
+                <varlistentry>
+                    <term><varname>DISPLAY</varname></term>
+                    <listitem>
+                        <para>Specifies the X11 display name.</para>
+                        <para>If both <varname>DISPLAY</varname> and the option
+                        <option>--display=<replaceable>display-name</replaceable></option> are missing,
+                        the the program will fail.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Bugs</title>
+        <para>Additional input devices other than the keyboard and core pointer are not disabled.
+            The cursor bitmap and colour cannot be modifed.</para>
+    </refsection>
+
+</refentry>
+<!-- vim:set ts=2 sts=2 sw=2 tw=120 et: -->
