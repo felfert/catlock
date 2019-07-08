@@ -1,0 +1,56 @@
+#!/bin/sh
+
+recho () {
+    cmake -E cmake_echo_color --switch=${COLOR} --red --bold "$@"
+}
+
+if [ -z "${GITHUB_TOKEN}" ] ; then
+    recho "Required environment variable GITHUB_TOKEN is missing"
+    exit 1
+fi
+if [ $# -lt 4 ] ; then
+    recho "Need at least 4 arguments"
+    exit 1
+fi
+GHUSER=$1
+shift
+GHPROJECT=$1
+shift
+VERSION=$1
+shift
+
+require_clean_work_tree () {
+    # Update the index
+    git update-index -q --ignore-submodules --refresh
+    err=0
+
+    # Disallow unstaged changes in the working tree
+    if ! git diff-files --quiet --ignore-submodules --
+    then
+        recho "cannot $1: you have unstaged changes."
+        git diff-files --name-status -r --ignore-submodules --
+        err=1
+    fi
+
+    # Disallow uncommitted changes in the index
+    if ! git diff-index --cached --quiet HEAD --ignore-submodules --
+    then
+        recho "cannot $1: your index contains uncommitted changes."
+        git diff-index --cached --name-status -r --ignore-submodules HEAD --
+        err=1
+    fi
+
+    if [ $err = 1 ]
+    then
+        recho "Please commit or stash them."
+        exit 1
+    fi
+}
+
+require_clean_work_tree "create github release"
+cmake -E cmake_echo_color --switch=${COLOR} --blue --bold "Creating v${VERSION} release on gitub"
+ltag=$(git describe --tags `git rev-list --tags --max-count=1`)
+cmp="$ltag..HEAD"
+test -n "${ltag}" || cmp=""
+chl=$(git log $cmp --oneline --no-merges)
+exec github-release ${GHUSER}/${GHPROJECT} v${VERSION} "$(git rev-parse --abbrev-ref HEAD)" "**Changelog**<br/>$chl" "$@"

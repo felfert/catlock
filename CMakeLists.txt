@@ -50,3 +50,15 @@ foreach(file ${XMLTO_FILES_man})
         DESTINATION ${CMAKE_INSTALL_MANDIR}/man${fileExt}
     )
 endforeach()
+
+# Add ghrelease target
+add_custom_target(ghrelease
+    COMMAND tar czf "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}-${CMAKE_PROJECT_VERSION}.tar.gz"
+    --exclude=.git --exclude=build --owner root --group root --transform
+    "s/^\\./${CMAKE_PROJECT_NAME}-${CMAKE_PROJECT_VERSION}/" .
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    COMMENT "Creating source tarball"
+    COMMAND sh .github/release "${GITHUB_USER}" "${CMAKE_PROJECT_NAME}" "${CMAKE_PROJECT_VERSION}"
+        "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}-${CMAKE_PROJECT_VERSION}.tar.gz"
+    VERBATIM
+)
