@@ -1,0 +1,17 @@
+Source: catlock
+Section: unknown
+Priority: extra
+Maintainer: Fritz Elfert <catlock@fritz-elfert.de>
+Build-Depends: cmake, debhelper (>=9), g++, pkg-config,
+ xmlto, libxcb-keysyms1-dev, libxcb-image0-dev,
+ libxcb-dpms0-dev, libxext-dev, libpopt-dev
+Standards-Version: 3.9.8
+Homepage: https://github.com/felfert/catlock
+
+Package: catlock
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Lock your computer against cat access
+ catlock locks the keyboard and mouse against cats,
+ walking over them.
