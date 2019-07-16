@@ -9,7 +9,8 @@ License:	    BSD-2-Clause
 Group:		    Applications/X11
 URL:		    https://github.com/felfert/catlock
 Source0:	    https://github.com/felfert/catlock/archive/%{name}-%{version}.tar.gz
-BuildRequires:  cmake gcc-c++ pkg-config xmlto make desktop-file-utils
+BuildRequires:  cmake >= 3.10
+BuildRequires:  gcc-c++ pkg-config xmlto make desktop-file-utils
 BuildRequires:  libxcb-devel xcb-util-keysyms-devel xcb-util-image-devel
 BuildRequires:  libX11-devel popt-devel
 
