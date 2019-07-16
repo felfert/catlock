@@ -417,6 +417,9 @@ int main(int argc, const char **argv)
                         cout << kstr << endl;
                     }
                     if (0 == kstr.compare(shortcut)) {
+                        // Wait until all involved key(s) are released. Otherwise,
+                        // any key release event might have unintended consequences after exit.
+                        waitfor_keyrelease(conn, kstr, ksyms);
                         break;
                     }
                     if (0 == kstr.compare(oshortcut)) {
