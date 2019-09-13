@@ -4,16 +4,18 @@ recho () {
     cmake -E cmake_echo_color --switch=${COLOR} --red --bold "$@"
 }
 
+if [ -z "${GITHUB_USER}" ] ; then
+    recho "Required environment variable GITHUB_USER is missing"
+    exit 1
+fi
 if [ -z "${GITHUB_TOKEN}" ] ; then
     recho "Required environment variable GITHUB_TOKEN is missing"
     exit 1
 fi
-if [ $# -lt 4 ] ; then
-    recho "Need at least 4 arguments"
+if [ $# -lt 3 ] ; then
+    recho "Need at least 3 arguments"
     exit 1
 fi
-GHUSER=$1
-shift
 GHPROJECT=$1
 shift
 VERSION=$1
@@ -53,4 +55,4 @@ ltag=$(git describe --tags `git rev-list --tags --max-count=1`)
 cmp="$ltag..HEAD"
 test -n "${ltag}" || cmp=""
 chl=$(git log $cmp --oneline --no-merges)
-exec github-release ${GHUSER}/${GHPROJECT} v${VERSION} "$(git rev-parse --abbrev-ref HEAD)" "**Changelog**<br/>$chl" "$@"
+exec github-release ${GITHUB_USER}/${GHPROJECT} v${VERSION} "$(git rev-parse --abbrev-ref HEAD)" "**Changelog**<br/>$chl" "$@"
