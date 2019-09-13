@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project("catlock"
     LANGUAGES CXX
-    VERSION 1.0
+    VERSION 1.0.1
     DESCRIPTION "Lock keyboard and pointer"
 )
 include(GNUInstallDirs)

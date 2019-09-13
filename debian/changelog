@@ -1,5 +1,16 @@
-catlock (1.0) unstable; urgency=low
+catlock (1.0.1) unstable; urgency=low
 
-  * Initial release.
+  * Wait for keyrelease before exit (rev.fd9e8834)
+  * Fix build dependencies (rev.8e3d1868)
+  * Add packaging for ubuntu and fedora (rev.e82b9f09)
+  * Add ghrelease target for releasing on github (rev.3ebbad38)
 
- -- Fritz Elfert <catlock@fritz-elfert.de>  Mon, 08 Jul 2019 13:59:50 +0000
+ -- Fritz Elfert <fritz@fritz-elfert.de>  Tue, 16 Jul 2019 17:46:10 -0000
+
+catlock (1.0.0) unstable; urgency=low
+
+  * Initial import (rev.21494358)
+  * Initial commit (rev.b2451b6a)
+
+ -- Fritz Elfert <fritz@fritz-elfert.de>  Sat, 06 Jul 2019 16:57:41 -0000
+

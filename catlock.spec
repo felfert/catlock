@@ -1,4 +1,4 @@
-%define ver 1.0
+%define ver 1.0.1
 %define rel 1%{?dist}
 
 Name:		    catlock
@@ -42,5 +42,12 @@ update-desktop-database
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
-* Mon Jul  8 2019 Fritz Elfert <catlock@fritz-elfert.de> - 1.0-1
-- Initial release.
+* Tue Jul 16 2019 Fritz Elfert <fritz@fritz-elfert.de> - 1.0.1
+- Wait for keyrelease before exit (rev.fd9e8834)
+- Fix build dependencies (rev.8e3d1868)
+- Add packaging for ubuntu and fedora (rev.e82b9f09)
+- Add ghrelease target for releasing on github (rev.3ebbad38)
+
+* Sat Jul 06 2019 Fritz Elfert <fritz@fritz-elfert.de> - 1.0.0
+- Initial import (rev.21494358)
+- Initial commit (rev.b2451b6a)
