@@ -1,3 +1,4 @@
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 # catlock
 This is a simple program to protect my computer from my cat walking over the keyboard
 and playing with the mouse :-)
